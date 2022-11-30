@@ -7,6 +7,7 @@
 #include "Goomba.h"
 #include "Coin.h"
 #include "Portal.h"
+#include "MovingPlatform.h"
 
 #include "Collision.h"
 
@@ -54,6 +55,33 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithCoin(e);
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
+	else if (dynamic_cast<CMovingPlatform*>(e->obj))
+		OnCollisionWithMovingPlaform(e);
+
+}
+
+void CMario::OnCollisionWithMovingPlaform(LPCOLLISIONEVENT e)
+{
+	CMovingPlatform* movepl = dynamic_cast<CMovingPlatform*>(e->obj);
+
+	if (e->ny != 0)
+	{
+		float posX, posY;
+		e->obj->GetPosition(posX, posY);
+
+		
+		if (level == MARIO_LEVEL_SMALL)
+		{
+			this->y = posY - MARIO_SMALL_BBOX_HEIGHT;
+			isOnPlatform = true;
+		}
+
+		if (level == MARIO_LEVEL_BIG)
+		{
+			this->y = posY - MARIO_BIG_BBOX_HEIGHT;
+			isOnPlatform = true;
+		}
+	}
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)

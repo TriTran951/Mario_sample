@@ -3,7 +3,9 @@
 mario.txt
 coin.txt
 cloud.txt
+goomba.txt
 brick.txt
+movingplatform.txt
 #
 [OBJECTS]
 # type	x	y	extra_settings per object type
@@ -13,23 +15,15 @@ brick.txt
 # MARIO
 0	120	10
 
-#COIN
-4	100	120
-4	120	120
-4	140	120
-4	160	120
-4	180	120
-
-
-4	100	100
-4	120	100
-4	140	100
-4	160	100
-4	180	100
 
 #Platform
-5	100	180	16	15	32	20001	52000	20001
+5	100	180	16	15	32	51000	52000	53000
+
+#MovingPlatform
+6	180	160	16	10	5	51000	52000	53000	50	160
 
 #Portal 
-50	200	160	216	180	5
+50	200	50	216	60	5
 
+#Goomba
+2	300	10
